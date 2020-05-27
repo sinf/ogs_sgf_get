@@ -69,6 +69,7 @@ def main():
 	make_dir("sgf")
 	username=input("Input your username(case sensitive): ")
 	try:
+		username=username.strip()
 		userid=get_player_id(username)
 	except:
 		print("failed to get user id")
