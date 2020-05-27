@@ -2,6 +2,7 @@
 import requests
 import json
 import os
+from time import sleep
 
 sess=requests.Session()
 
@@ -54,6 +55,7 @@ def get_games(pid, count):
 				gameCount += 1
 				if gameCount == count:
 					break
+				sleep(0.2)
 		page += 1
 		print("games: %d/%d" % (gameCount,count))
 
