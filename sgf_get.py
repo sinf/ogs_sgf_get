@@ -121,15 +121,14 @@ class OGS_Mirror:
 def main():
 	ap=ArgumentParser(prog="sgf_get.py",
 		description="""
-Fetches at most LIMIT recent games of user USERNAME from online-go.com.
+Fetches at most LIMIT most recent games (most recent first) of user USERNAME from online-go.com.
 SGF files are saved to directory OUTPUTDIR.
-Temporary cruft is saved in DATABASE.
-Re-running this script downloads only games that haven't been yet downloaded.
+You can re-run this script whenever to keep your local SGF collection up to date.
 """)
 	ap.add_argument("username", metavar="USERNAME", nargs='+', help='Can specify multiple usernames. Case sensitive')
-	ap.add_argument("-l", "--limit", metavar="LIMIT", type=int, default=100, help='Use -1 for no limit')
-	ap.add_argument("-o", "--outputdir", metavar="OUTPUTDIR", type=str, default='./sgf')
-	ap.add_argument("-k", "--keep-going", action='store_true', help='Keep going further into the past even if many games are found to be already downloaded')
+	ap.add_argument("-l", "--limit", metavar="LIMIT", type=int, default=100, help='Maximum number of recent games to check. Default 100. Use -1 for no limit.')
+	ap.add_argument("-o", "--outputdir", metavar="OUTPUTDIR", type=str, default='./sgf', help="Default ./sgf")
+	ap.add_argument("-k", "--keep-going", action='store_true', help='Keep going all the way into the past even if many games are found to be already downloaded')
 	args=ap.parse_args()
 
 	assert type(args.outputdir) is str
